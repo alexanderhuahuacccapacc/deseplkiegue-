@@ -1,0 +1,15 @@
+# Usa OpenJDK 17
+FROM openjdk:17-jdk-slim
+
+# Directorio de trabajo dentro del contenedor
+WORKDIR /app
+
+# Copia el JAR generado a la carpeta del contenedor
+COPY target/ms-transport-tracking-0.0.1-SNAPSHOT.jar app.jar
+
+# Expone el puerto (Render asigna uno automáticamente con la variable PORT)
+ENV PORT 8080
+EXPOSE 8080
+
+# Comando para ejecutar el backend
+ENTRYPOINT ["java", "-jar", "app.jar"]
